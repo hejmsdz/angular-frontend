@@ -8,11 +8,30 @@
   </head>
   <body ng-app="PHPFrontend">
     <div class="container" ng-controller="BaseController">
-      Hello {{world}}!
+      <h1>Moja aplikacja</h1>
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th ng-repeat="field in fields" ng-bind="field.label" ng-if="!field.tableHide &amp;&amp; !field.hide"></th>
+            <th>Akcje</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in items">
+            <td ng-repeat="field in fields" ng-bind="item[field.name]" ng-if="!field.tableHide &amp;&amp; !field.hide"></td>
+            <td>
+              <button class="btn btn-info" ng-click="editClick(item)">Edytuj</button>
+              <button class="btn btn-danger" ng-click="deleteClick(item)">Usuń</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="btn btn-success" ng-click="createClick()">Dodaj</button>
     </div>
 
     <script src="node_modules/angular/angular.min.js"></script>
-    <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
+    <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
     <script src="js/app.js"></script>
   </body>
 </html>
