@@ -22,6 +22,12 @@
             headers: headers
           });
         },
+        'update': function(oldItem, newItem) {
+          return $http.post('/server/update.php', $httpParamSerializerJQLike(newItem), {
+            headers: headers,
+            params: {id: oldItem.id}
+          });
+        },
         'delete': function(item) {
           return $http.post('/server/delete.php', $httpParamSerializerJQLike({id: item.id}), {
             headers: headers
