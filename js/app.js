@@ -21,7 +21,12 @@
           return $http.post('/server/create.php', $httpParamSerializerJQLike(item), {
             headers: headers
           });
-        }
+        },
+        'delete': function(item) {
+          return $http.post('/server/delete.php', null, {
+            params: {id: item.id}
+          });
+        },
       }
     }])
     .factory('mock-crud', ['$q', function($q) {
