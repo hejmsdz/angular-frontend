@@ -1,7 +1,5 @@
 <?php
 
-$decodedContent = json_decode();
-
 /*
 {
 "name":"",
