@@ -1,6 +1,7 @@
 <?php
 
 include 'common.php';
+
 /*
 $content = [
     [
@@ -15,7 +16,7 @@ $content = [
     ]
 ];
 */
-$dbh = new PDO("sqlite:$dbpath");
+
 //Select rows
 $content = [];
 $query = 'SELECT * FROM `data`;';

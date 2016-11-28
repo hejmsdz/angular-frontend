@@ -8,10 +8,8 @@
  *
  */
 include 'common.php';
-//connect to database
-$dbh = new PDO("sqlite:$dbpath");
-//Insert element
 
+//Insert element
 $name = $_POST['name'];
 $description = $_POST['description'];
 

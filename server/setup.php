@@ -7,7 +7,6 @@
  */
 include 'common.php';
 
-$dbh = new PDO("sqlite:$dbpath");
 //setup table
 
 $stmt = $dbh->exec('
