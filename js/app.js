@@ -1,11 +1,6 @@
 (function() {
   angular
-    .module('PHPFrontend', ['ui.bootstrap'])
-    .constant('FIELDS', [
-      {'label': 'ID', 'name': 'id', 'hide': true},
-      {'label': 'Nazwa', 'name': 'name'},
-      {'label': 'Opis', 'name': 'description', 'tableHide': true},
-    ])
+    .module('PHPFrontend', ['ui.bootstrap', 'PHPFrontend.fields'])
     .factory('errorModal', ['$uibModal', function($uibModal) {
       return function(status) {
         $uibModal.open({
