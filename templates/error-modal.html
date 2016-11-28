@@ -1,0 +1,12 @@
+<header class="modal-header">
+  <h3 class="modal-title">{{ statusCode }} {{ statusText }}</h3>
+</header>
+<div class="modal-body">
+  <p>Uruchomienie Twojego skryptu pod adresem <code ng-bind="url"></code> zakończyło się błędem.</p>
+  <p>Sprawdź, czy w logach serwera pojawiła się informacja o tym, co go wywołało.</p>
+  <p>Jeśli nie potrafisz poradzić sobie z problemem, zapytaj kogoś z prowadzących warsztaty.</p>
+  <pre ng-bind="response" ng-show="response.length"></pre>
+</div>
+<footer class="modal-footer">
+  <button class="btn btn-default" type="button" ng-click="$dismiss()">Zamknij</button>
+</footer>

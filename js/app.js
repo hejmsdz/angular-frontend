@@ -6,32 +6,56 @@
       {'label': 'Nazwa', 'name': 'name'},
       {'label': 'Opis', 'name': 'description', 'tableHide': true},
     ])
-    .factory('crud', ['$http', '$httpParamSerializerJQLike', function($http, $httpParamSerializerJQLike) {
+    .factory('errorModal', ['$uibModal', function($uibModal) {
+      return function(status) {
+        $uibModal.open({
+          'templateUrl': 'templates/error-modal.html',
+          'controller': 'ErrorController',
+          'resolve': {
+            status: function() {
+              return status;
+            }
+          }
+        });
+      };
+    }])
+    .controller('ErrorController', ['$scope', 'status', function($scope, status) {
+      console.log(status);
+      $scope.url = status.config.url;
+      $scope.statusCode = status.status;
+      $scope.statusText = status.statusText;
+      $scope.response = status.data;
+    }])
+    .factory('crud', ['$http', '$httpParamSerializerJQLike', 'errorModal', function($http, $httpParamSerializerJQLike, errorModal) {
       var headers = {
         'Content-Type': 'application/x-www-form-urlencoded'
       };
 
+      var identity = function(x) {return x};
+
       return {
         'all': function() {
-          return $http.get('/server/list.php').then(function(response) {
+          return $http.get('/server/list.php', null, {
+            responseType: 'text/json'
+          }).then(function(response) {
             return response.data;
-          });
+          }, errorModal);
         },
         'create': function(item) {
           return $http.post('/server/create.php', $httpParamSerializerJQLike(item), {
             headers: headers
-          });
+          }).then(identity, errorModal);
         },
         'update': function(oldItem, newItem) {
           return $http.post('/server/update.php', $httpParamSerializerJQLike(newItem), {
             headers: headers,
             params: {id: oldItem.id}
-          });
+          }).then(identity, errorModal);
         },
         'delete': function(item) {
           return $http.post('/server/delete.php', $httpParamSerializerJQLike({id: item.id}), {
             headers: headers
-          });
+          }).then(identity, errorModal);
         },
       }
     }])
