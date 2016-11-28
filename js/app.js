@@ -149,9 +149,7 @@
       $scope.save = function() {
         $scope.error = null;
         crud.update(item, $scope.item)
-          .then($uibModalInstance.close, function() {
-            $scope.error = "Wystąpił błąd!";
-          });
+          .then($uibModalInstance.close);
       }
     }])
     .controller('DeleteController', ['$scope', '$uibModalInstance', 'crud', 'item', function($scope, $uibModalInstance, crud, item) {
@@ -170,9 +168,7 @@
       $scope.save = function() {
         $scope.error = null;
         crud.create($scope.item)
-          .then($uibModalInstance.close, function() {
-            $scope.error = "Wystąpił błąd!";
-          });
+          .then($uibModalInstance.close);
       }
     }]);
 })();
