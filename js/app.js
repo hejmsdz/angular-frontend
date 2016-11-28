@@ -23,8 +23,8 @@
           });
         },
         'delete': function(item) {
-          return $http.post('/server/delete.php', null, {
-            params: {id: item.id}
+          return $http.post('/server/delete.php', $httpParamSerializerJQLike({id: item.id}), {
+            headers: headers
           });
         },
       }
