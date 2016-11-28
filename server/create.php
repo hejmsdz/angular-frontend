@@ -9,8 +9,9 @@ $decodedContent = json_decode();
 }
  *
  */
+include 'common.php';
 //connect to database
-$dbh = new PDO('sqlite:db.sqlite3');
+$dbh = new PDO("sqlite:$dbpath");
 //Insert element
 
 $name = $_POST['name'];
