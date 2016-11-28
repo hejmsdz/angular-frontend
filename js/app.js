@@ -6,7 +6,23 @@
       {'label': 'Nazwa', 'name': 'name'},
       {'label': 'Opis', 'name': 'description', 'tableHide': true},
     ])
-    .factory('crud', ['$q', function($q) {
+    .factory('crud', ['$http', '$httpParamSerializerJQLike', function($http, $httpParamSerializerJQLike) {
+      var headers = {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      };
+
+      return {
+        'all': function() {
+          return $http.get('/server/list.php');
+        },
+        'create': function(item) {
+          return $http.post('/server/create.php', $httpParamSerializerJQLike(item), {
+            headers: headers
+          });
+        }
+      }
+    }])
+    .factory('mock-crud', ['$q', function($q) {
       var chance = function(probability) {
           return $q(function(resolve, reject) {
             Math.random() < probability ? resolve() : reject();
