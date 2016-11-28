@@ -13,7 +13,7 @@ $dbh = new PDO("sqlite:$dbpath");
 $stmt = $dbh->exec('
     CREATE TABLE data
     (
-    id int,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     name varchar(255),
     description varchar(255)
     );
@@ -23,11 +23,11 @@ $stmt = $dbh->exec('
 
 $stmt = $dbh->exec('
 
-INSERT INTO data (ID, name, description) VALUES (1, \'test\', \'test2\');
+INSERT INTO data (name, description) VALUES (\'test\', \'test2\');
 
 ');
 $stmt = $dbh->exec('
 
-INSERT INTO data (ID, name, description) VALUES (1, \'test3\', \'test4\');
+INSERT INTO data (name, description) VALUES (\'test3\', \'test4\');
 
 ');

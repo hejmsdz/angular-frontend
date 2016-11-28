@@ -1,6 +1,6 @@
 <?php
 
-$decodedContent = json_decode($_POST['data']);
+$decodedContent = json_decode();
 
 /*
 {
@@ -13,11 +13,11 @@ $decodedContent = json_decode($_POST['data']);
 $dbh = new PDO('sqlite:db.sqlite3');
 //Insert element
 
-$stmt = $dbh->prepare("INSERT INTO REGISTRY (name, value) VALUES (:name, :value)");
-$stmt->bindParam(':name', $name);
-$stmt->bindParam(':value', $value);
+$name = $_POST['name'];
+$description = $_POST['description'];
 
-// insert one row
-$name = 'one';
-$value = 1;
+$stmt = $dbh->prepare("INSERT INTO data (name, description) VALUES (:name, :description)");
+$stmt->bindParam(':name', $name);
+$stmt->bindParam(':description', $description);
+
 $stmt->execute();
