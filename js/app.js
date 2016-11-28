@@ -13,7 +13,9 @@
 
       return {
         'all': function() {
-          return $http.get('/server/list.php');
+          return $http.get('/server/list.php').then(function(response) {
+            return response.data;
+          });
         },
         'create': function(item) {
           return $http.post('/server/create.php', $httpParamSerializerJQLike(item), {
