@@ -7,9 +7,15 @@
     <link rel="stylesheet" href="node_modules/bootstrap-css-only/css/bootstrap.min.css">
   </head>
   <body ng-app="PHPFrontend">
-    <div class="container" ng-controller="BaseController">
-      <h1>Moja aplikacja</h1>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">AKAI PHP</a>
+        </div>
+      </div>
+    </nav>
 
+    <div class="container" ng-controller="BaseController">
       <div class="alert alert-info" ng-hide="items.length">Lista jest pusta.</div>
 
       <table class="table table-striped" ng-show="items.length">
